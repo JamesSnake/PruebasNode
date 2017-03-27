@@ -26,19 +26,6 @@ function obtenerPais(options,cb){
 	.end();
 }
 
-/*
-var task = cron.schedule('* * * * *', function(){
-    /*obtenerPais(options,(err,obj)=>{
-		if(err){
-			return console.log('Error durante la llamada al servicio',err);
-		}
-		console.log(obj);
-	});
-	console.log('ejecutado inmediato');
-});
-
-task.stop();
-*/
 cron.schedule('* * * * *', function(){
 	obtenerPais(options,(err,obj)=>{
 		if(err){
