@@ -1,0 +1,15 @@
+{
+  "name": "mapper",
+  "version": "1.0.0",
+  "description": "utilitario para realizar mapeo de un json a otra plantilla json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jaime tenorio",
+  "license": "ISC",
+  "dependencies": {
+    "i": "^0.3.5",
+    "json2json-transform": "0.0.1"
+  }
+}
