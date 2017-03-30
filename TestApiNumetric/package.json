@@ -1,0 +1,15 @@
+{
+  "name": "testapinumetric",
+  "version": "1.0.0",
+  "description": "test de conexion a la api del gringo numetrico",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jaime tenori",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
+  }
+}
