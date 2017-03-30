@@ -1,4 +1,47 @@
-module.exports={
+var config = function() {};
+config.prototype ={
+	optionsGetDataSet:{
+		uri: 'https://api-qa.numetric.com/v2/dataset',
+		//port:80,
+		//path: '',
+		method: 'GET',
+		headers:{'Authorization': 'rJuUQBduBXsQGUN9AWmeUgC1SmYBKWISj8FTVrNzjZM%3D'},
+		json: true
+	},
+	optionsGetDataSetById:{
+		uri: 'https://api-qa.numetric.com/v2/dataset/{datasetId}',
+		//port:80,
+		//path: '',
+		method: 'GET',
+		headers:{'Authorization': 'rJuUQBduBXsQGUN9AWmeUgC1SmYBKWISj8FTVrNzjZM%3D'},
+		json: true
+	},
+	optionsCreateDataSet:{
+		uri: 'https://api-qa.numetric.com/v2/dataset',
+		//port:80,
+		//path: '',
+		method: 'POST',
+		headers:{'Authorization': 'rJuUQBduBXsQGUN9AWmeUgC1SmYBKWISj8FTVrNzjZM%3D'},
+		body:[],
+		json: true
+	},
+	optionsUpdateRowsDataSet:{
+		uri: 'https://api-qa.numetric.com/v2/dataset/{datasetId}/rows',
+		//port:80,
+		//path: '',
+		method: 'POST',
+		headers:{'Authorization': 'B43K55GPFQ%2FiO9fYCHaAaOznow4zZvMdLjRZ06upEpo%3D'},
+		body:[],
+		json: true
+	},
+	optionsGetRowsDataSet:{
+		uri: 'https://api-qa.numetric.com/v2/dataset/{datasetId}/rows',
+		//port:80,
+		//path: '',
+		method: 'GET',
+		headers:{'Authorization': 'B43K55GPFQ%2FiO9fYCHaAaOznow4zZvMdLjRZ06upEpo%3D'},
+		json: true
+	},
 	operations:[], //aqui se puede configurar valores por defecto en este caso no aplica dont apply
 	plantillaJsonDestino: 
 	{
@@ -99,4 +142,6 @@ module.exports={
 				    }
 				  ]
 				}
-}
+};
+
+module.exports=config;

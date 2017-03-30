@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "i": "^0.3.5",
-    "json2json-transform": "0.0.1"
+    "json2json-transform": "0.0.1",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
   }
 }

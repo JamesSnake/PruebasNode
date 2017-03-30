@@ -3,7 +3,16 @@
 
 var ObtenerTipoDatoJsonObject = function (jsonObject){
 var classNameOfThing = typeof jsonObject;
-return classNameOfThing;
+switch (classNameOfThing) {
+        case 'boolean'   : return classNameOfThing;
+        case 'function'  : return function () {};
+        case 'null'      : return null;
+        case 'number'    : return "integer";
+        case 'object'    : return {};
+        case 'string'    : return classNameOfThing;
+        case 'symbol'    : return Symbol();
+        case 'undefined' : return void 0;
+    }
 }
 
 var isArray = function (jsonProperty) {
@@ -25,7 +34,7 @@ var GetDefaultValue = function (type) {
         case 'boolean'   : return false;
         case 'function'  : return function () {};
         case 'null'      : return null;
-        case 'number'    : return 0;
+        case 'integer'    : return 0;
         case 'object'    : return {};
         case 'string'    : return "";
         case 'symbol'    : return Symbol();
@@ -65,7 +74,7 @@ baseJson[fieldsNameActual] = []; // empty Array, which you can push() values int
 	    	BodyJson = CreateProp(BodyJson,"displayName",prop);
 	    	BodyJson = CreateProp(BodyJson,"autocomplete",false);
 	    	BodyJson = CreateProp(BodyJson,"type",dataType);
-	    	BodyJson = CreateProp(BodyJson,"default",defaultValue);
+	    	if(dataType !=='string'){BodyJson = CreateProp(BodyJson,"default",defaultValue)};
 	    	baseJson[fieldsNameActual].push(BodyJson);
 	    }
 	}
@@ -86,15 +95,47 @@ count =0;
 		var DataSet = {};
 		count++;
 		DataSet = CreateProp(DataSet,"name","DataSet"+count);
-		DataSet = CreateProp(DataSet,"primaryKey","id");
 		DataSet = CreateProp(DataSet,"fields",JsonFieldsList[element]);
+		DataSet = CreateProp(DataSet,"primaryKey","id");
 	    DataSet = CreateProp(DataSet,"description","DataSet Shopify Generate Automatic");
 	    JsonResult["DataSetList"].push(DataSet);
 	}
 return JsonResult;
 }
 
+var GenerateDataSetsNumetricFromMixPanel = function(inputDataMixPanel){
+
+var JsonResult = {};
+JsonResult["DataSetList"] = [];
+var JsonFieldsList = {};
+var fieldsName = "fields";
+var count =0;
+
+GenerarFieldListDataSetNumetric(inputDataMixPanel, fieldsName, JsonFieldsList,count);
+count =0;
+
+	for(var element in JsonFieldsList){
+		var DataSet = {};
+		count++;
+		DataSet = CreateProp(DataSet,"name","DataSet"+count);
+		DataSet = CreateProp(DataSet,"fields",JsonFieldsList[element]);
+		DataSet = CreateProp(DataSet,"primaryKey","distinct_id");
+	    DataSet = CreateProp(DataSet,"description","DataSet Mix Panel Generate Automatic");
+	    JsonResult["DataSetList"].push(DataSet);
+	}
+return JsonResult;
+}
+
+function GenerateRowsFromMixPanel(inputDataMixPanel,JsonRows){	
+	var Row = {};
+		for(var element in inputDataMixPanel){
+			Row = CreateProp(Row,element,inputDataMixPanel[element]);
+		}
+		JsonRows.push(Row);
+}
 
 module.exports = {
- GenerateDataSetsNumetricFromShopify : GenerateDataSetsNumetricFromShopify
+ GenerateDataSetsNumetricFromShopify : GenerateDataSetsNumetricFromShopify,
+ GenerateDataSetsNumetricFromMixPanel : GenerateDataSetsNumetricFromMixPanel,
+ GenerateRowsFromMixPanel : GenerateRowsFromMixPanel
 }
