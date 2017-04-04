@@ -61,10 +61,10 @@ var GetDefaultValue = function (type) {
     } catch (e) { return {}; }
 }
 
-var GenerarFieldListDataSetNumetric = function (inputJson, fieldsName, baseJson,count){
+var GenerarFieldListDataSetNumetric = function (inputJson,fieldsName, baseJson){
 
 
-var fieldsNameActual = fieldsName + count;
+var fieldsNameActual = fieldsName; //prefixName +
 baseJson[fieldsNameActual] = []; // empty Array, which you can push() values into
 
 	for ( var prop in inputJson ) {
@@ -74,9 +74,9 @@ baseJson[fieldsNameActual] = []; // empty Array, which you can push() values int
 	    	//for (var i = 0; i < inputJson[prop].length; i++ ){GenerarFieldListDataSetNumetric(inputJson[prop][i],fieldsName,baseJson,count);}
 	    	if(inputJson[prop].length>0){
 	    		if(ObtenerTipoDatoJsonObject(inputJson[prop][0])=="objeto"){
-	    		count++;
+	    		//count++;
 	    		//arguments.callee(inputJson[prop][0],fieldsName,baseJson,count);
-	    		GenerarFieldListDataSetNumetric(inputJson[prop][0],fieldsName,baseJson,count);
+	    		GenerarFieldListDataSetNumetric(inputJson[prop][0],fieldsName+"_"+prop,baseJson);
 	    		}
 	    	}
 	    }
@@ -99,16 +99,17 @@ var GenerateDataSetsNumetricFromShopify = function(inputDataShopify,namePK){
 var JsonResult = {};
 JsonResult["DataSetList"] = [];
 var JsonFieldsList = {};
-var fieldsName = "fields";
-var count =1;
+var fieldsName = "Init";
+//var prefixName = "fields";
+var count =0;
 
-GenerarFieldListDataSetNumetric(inputDataShopify, fieldsName, JsonFieldsList,count);
-count =0;
+GenerarFieldListDataSetNumetric(inputDataShopify,fieldsName,JsonFieldsList,count);
+
 
 	for(var element in JsonFieldsList){
 		var DataSet = {};
 		count++;
-		DataSet = CreateProp(DataSet,"name","DataSet"+count);
+		DataSet = CreateProp(DataSet,"name","DataSet"+count+"_"+element);
 		DataSet = CreateProp(DataSet,"fields",JsonFieldsList[element]);
 		DataSet = CreateProp(DataSet,"primaryKey",namePK);
 	    DataSet = CreateProp(DataSet,"description","DataSet Shopify Generate Automatic");

@@ -173,10 +173,10 @@ var datasetmixpanel = utils.GenerateDataSetsNumetricFromMixPanel(finalFormatMixP
 generateDataSetNumetric(datasetmixpanel.DataSetList[0]);
 */
 //Shopify
-var datasetshopify = utils.GenerateDataSetsNumetricFromShopify(iS.inputTransaction.transactions[0],"id");
-utils.WriteFileTxt(JSON.stringify(datasetshopify));
-console.log(datasetshopify);
-//generateDataSetNumetric(datasetsShopify.datasetProductImages);
+//var datasetshopify = utils.GenerateDataSetsNumetricFromShopify(iS.inputOrder.orders[0],"id");
+//utils.WriteFileTxt(JSON.stringify(datasetshopify));
+//console.log(datasetshopify);
+generateDataSetNumetric(datasetsShopify.datasetOrderRefundsTransaction);
 
 
 
