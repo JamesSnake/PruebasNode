@@ -1,20 +1,24 @@
 var config = function(Id) { this.datasetId=Id;};
 
+var keyUser='rJuUQBduBXsQGUN9AWmeUgC1SmYBKWISj8FTVrNzjZM%3D';
+
 config.prototype.parameters = function(data){ return {
+	keyUser: keyUser,
+	apiSecretMixPanel: '447e92839ec3755e52b7c559ebe15d31',
 	optionsGetDataSet:{
 		uri: 'https://api-qa.numetric.com/v2/dataset',
 		//port:80,
 		//path: '',
 		method: 'GET',
-		headers:{'Authorization': 'rJuUQBduBXsQGUN9AWmeUgC1SmYBKWISj8FTVrNzjZM%3D'},
+		headers:{'Authorization': keyUser},
 		json: true
 	},
 	optionsGetDataSetById:{
-		uri: 'https://api-qa.numetric.com/v2/dataset/{datasetId}',
+		uri: 'https://api-qa.numetric.com/v2/dataset/'+this.datasetId,
 		//port:80,
 		//path: '',
 		method: 'GET',
-		headers:{'Authorization': 'rJuUQBduBXsQGUN9AWmeUgC1SmYBKWISj8FTVrNzjZM%3D'},
+		headers:{'Authorization': keyUser},
 		json: true
 	},
 	optionsCreateDataSet:{
@@ -22,7 +26,7 @@ config.prototype.parameters = function(data){ return {
 		//port:80,
 		//path: '',
 		method: 'POST',
-		headers:{'Authorization': 'rJuUQBduBXsQGUN9AWmeUgC1SmYBKWISj8FTVrNzjZM%3D'},
+		headers:{'Authorization': keyUser},
 		body:data,
 		json: true
 	},
@@ -31,19 +35,34 @@ config.prototype.parameters = function(data){ return {
 		//port:80,
 		//path: '',
 		method: 'POST',
-		headers:{'Authorization': 'rJuUQBduBXsQGUN9AWmeUgC1SmYBKWISj8FTVrNzjZM%3D'},
+		headers:{'Authorization': keyUser},
 		body:data,
 		json: true
 	},
 	optionsGetRowsDataSet:{
-		uri: 'https://api-qa.numetric.com/v2/dataset/{datasetId}/rows',
+		uri: 'https://api-qa.numetric.com/v2/dataset/'+this.datasetId+'/rows',
 		//port:80,
 		//path: '',
 		method: 'GET',
-		headers:{'Authorization': 'rJuUQBduBXsQGUN9AWmeUgC1SmYBKWISj8FTVrNzjZM%3D'},
+		headers:{'Authorization': keyUser},
 		json: true
 	},
-	operations:[], //aqui se puede configurar valores por defecto en este caso no aplica dont apply
+	optionsDeleteRowsDataSet:{
+		uri: 'https://api-qa.numetric.com/v2/dataset/'+this.datasetId+'/rows',
+		//port:80,
+		//path: '',
+		method: 'DELETE',
+		headers:{'Authorization': keyUser},
+		json: true
+	},
+	operations:[{
+      run: function (value) {
+        var d = new Date(value);
+        var n = d.toISOString();
+        return n;
+      },
+      on: "time"
+    }], //aqui se puede configurar valores por defecto en este caso no aplica dont apply
 	plantillaJsonDestino: 
 	{
 	"event":"$.event",

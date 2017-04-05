@@ -9,6 +9,7 @@
   "author": "jaime tenorio",
   "license": "ISC",
   "dependencies": {
+    "event-stream": "^3.0.20",
     "i": "^0.3.5",
     "json2json-transform": "0.0.1",
     "request": "^2.81.0",
